@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cd_black"
+            android:layout_width="match_parent"
+            android:layout_height="700dp"
+            android:backgroundTint="#f7f7f7"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <TextView
+                android:id="@+id/tvMasuk"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Buat Akun Baru"
+                android:fontFamily="@font/playfairdisplaybold"
+                android:textSize="30dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginLeft="20dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Halaman ini digunakan untuk membuat akun baru"
+                android:fontFamily="@font/playfairdisplaymedium"
+                android:textSize="15dp"
+                android:layout_marginTop="75dp"
+                android:layout_marginLeft="20dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="100dp"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/playfairdisplayregular"
+                    android:text="Username" />
+
+                <EditText
+                    android:id="@+id/editUsername"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/shape"
+                    android:hint="Username..."
+                    android:paddingLeft="10dp"
+                    android:textColor="#f7f7f7"
+                    android:textColorHint="#f7f7f7"
+                    android:textSize="15dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:fontFamily="@font/playfairdisplayregular"
+                    android:text="Password" />
+
+                <EditText
+                    android:id="@+id/editPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/shape"
+                    android:hint="Password..."
+                    android:inputType="textPassword"
+                    android:paddingLeft="10dp"
+                    android:textColor="#f7f7f7"
+                    android:textColorHint="#f7f7f7"
+                    android:textSize="15dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:fontFamily="@font/playfairdisplayregular"
+                    android:text="NIK" />
+
+                <EditText
+                    android:id="@+id/editNik"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/shape"
+                    android:hint="NIK.."
+                    android:inputType="number"
+                    android:paddingLeft="10dp"
+                    android:textColor="#f7f7f7"
+                    android:textColorHint="#f7f7f7"
+                    android:textSize="15dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:fontFamily="@font/playfairdisplayregular"
+                    android:text="Nama" />
+
+                <EditText
+                    android:id="@+id/editNama"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/shape"
+                    android:hint="Nama..."
+                    android:paddingLeft="10dp"
+                    android:textColor="#f7f7f7"
+                    android:textColorHint="#f7f7f7"
+                    android:textSize="15dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:fontFamily="@font/playfairdisplaymedium"
+                        android:text="Sudah punya akun?"
+                        android:textSize="15dp" />
+
+                    <TextView
+                        android:id="@+id/tvLogin"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:fontFamily="@font/playfairdisplaybold"
+                        android:text="Masuk"
+                        android:textSize="15dp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+                <Button
+                    android:id="@+id/idBtnPost"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:backgroundTint="#114232"
+                    android:fontFamily="@font/playfairdisplaybold"
+                    android:text="Buat Akun"
+                    android:textSize="18dp" />
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>

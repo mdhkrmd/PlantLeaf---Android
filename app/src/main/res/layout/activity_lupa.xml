@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/plants"
+    >
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/rectangle"
+        app:layout_constraintBottom_toTopOf="@id/cd_black"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:id="@+id/img_rectangle" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cd_black"
+        android:layout_width="match_parent"
+        android:layout_height="600dp"
+        android:backgroundTint="#f7f7f7"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <TextView
+            android:id="@+id/tvMasuk"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Lupa Password"
+            android:fontFamily="@font/playfairdisplaybold"
+            android:textSize="30dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="20dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Masukan username dan password baru anda"
+            android:fontFamily="@font/playfairdisplaymedium"
+            android:textSize="15dp"
+            android:layout_marginTop="75dp"
+            android:layout_marginLeft="20dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp"
+            android:layout_marginTop="100dp">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Username"
+                android:fontFamily="@font/playfairdisplayregular"/>
+
+            <EditText
+                android:id="@+id/inputUsername"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:background="@drawable/shape"
+                android:hint="Username"
+                android:textColor="#f7f7f7"
+                android:textColorHint="#f7f7f7"
+                android:paddingLeft="10dp"
+                android:textSize="15dp"
+                android:layout_marginTop="8dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Password Baru"
+                android:layout_marginTop="15dp"
+                android:fontFamily="@font/playfairdisplayregular"/>
+
+            <EditText
+                android:id="@+id/inputNewPassword"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:background="@drawable/shape"
+                android:hint="Password baru"
+                android:inputType="textPassword"
+                android:textColor="#f7f7f7"
+                android:textColorHint="#f7f7f7"
+                android:paddingLeft="10dp"
+                android:textSize="15dp"
+                android:layout_marginTop="8dp"/>
+
+            <LinearLayout
+                android:layout_marginTop="25dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Sudah punya akun?"
+                    android:fontFamily="@font/playfairdisplaymedium"
+                    android:textSize="15dp"
+                    android:layout_marginLeft="5dp"/>
+
+                <TextView
+                    android:id="@+id/txtLogin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Login"
+                    android:fontFamily="@font/playfairdisplaybold"
+                    android:textStyle="bold"
+                    android:textSize="15dp"
+                    android:layout_marginLeft="5dp"/>
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btnForgot"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="Ubah Password"
+                android:fontFamily="@font/playfairdisplaybold"
+                android:textSize="18dp"
+                android:backgroundTint="#114232"/>
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>
