@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void initRecyclerView() {
         ArrayList<PopularDomain> items=new ArrayList<>();
-        items.add(new PopularDomain("T-shirt black","item_1",15,4,500,"Immerse yourself in a world of vibrant visuals and\n" +
+        items.add(new PopularDomain("Artikel 1","item_1",15,4,500,"Immerse yourself in a world of vibrant visuals and\n" +
                 " immersive sound with the monitor.\n" +
                 " Its cutting-edge monitor technology brings every\n" +
                 " scene to life with striking clarity and rich colors.\n" +
@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
                 " not just a TV, but a centerpiece for your \n" +
                 "entertainment space. The ultra-slim bezel and\n" +
                 " premium finish blend seamlessly with any decor"));
-        items.add(new PopularDomain("Smart Watch","item_2",10,4.5,450,"Immerse yourself in a world of vibrant visuals and\n" +
+        items.add(new PopularDomain("Artikel 2","item_2",10,4.5,450,"Immerse yourself in a world of vibrant visuals and\n" +
                 " immersive sound with the monitor.\n" +
                 " Its cutting-edge monitor technology brings every\n" +
                 " scene to life with striking clarity and rich colors.\n" +
@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
                 " not just a TV, but a centerpiece for your \n" +
                 "entertainment space. The ultra-slim bezel and\n" +
                 " premium finish blend seamlessly with any decor"));
-        items.add(new PopularDomain("Phone","item_3",3,4.9,800,"Immerse yourself in a world of vibrant visuals and\n" +
+        items.add(new PopularDomain("Artikel 3","item_3",3,4.9,800,"Immerse yourself in a world of vibrant visuals and\n" +
                 " immersive sound with the monitor.\n" +
                 " Its cutting-edge monitor technology brings every\n" +
                 " scene to life with striking clarity and rich colors.\n" +

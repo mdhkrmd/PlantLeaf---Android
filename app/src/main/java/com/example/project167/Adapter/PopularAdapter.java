@@ -38,8 +38,8 @@ public class PopularAdapter extends RecyclerView.Adapter<PopularAdapter.Viewhold
     public void onBindViewHolder(@NonNull PopularAdapter.Viewholder holder, int position) {
         binding.titleTxt.setText(items.get(position).getTitle());
         binding.feeTxt.setText("$" + items.get(position).getPrice());
-        binding.scoreTxt.setText("" + items.get(position).getScore());
-        binding.reviewTxt.setText("" + items.get(position).getReview());
+//        binding.scoreTxt.setText("" + items.get(position).getScore());
+//        binding.reviewTxt.setText("" + items.get(position).getReview());
 
         int drawableResourced = holder.itemView.getResources().getIdentifier(items.get(position).getPicUrl()
                 , "drawable", holder.itemView.getContext().getPackageName());

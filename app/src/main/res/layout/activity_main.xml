@@ -94,7 +94,7 @@
                     android:drawableStart="@drawable/search_icon"
                     android:drawablePadding="8dp"
                     android:ems="10"
-                    android:hint="Search anaything..."
+                    android:hint="Search anything..."
                     android:inputType="text"
                     android:padding="8dp"
                     android:textColor="#9aa2aa"
