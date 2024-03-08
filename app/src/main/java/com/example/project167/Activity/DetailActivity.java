@@ -49,10 +49,10 @@ public class DetailActivity extends AppCompatActivity {
         binding.reviewTxt.setText(object.getReview() + "");
         binding.ratingTxt.setText(object.getScore() + "");
 
-        binding.addToCardBtn.setOnClickListener(v -> {
-            object.setNumberInCart(numberOrder);
-            managmentCart.insertFood(object);
-        });
+//        binding.addToCardBtn.setOnClickListener(v -> {
+//            object.setNumberInCart(numberOrder);
+//            managmentCart.insertFood(object);
+//        });
 
         binding.backBtn.setOnClickListener(v -> finish());
     }

@@ -57,7 +57,7 @@ public class activity_predict extends AppCompatActivity {
 
     private static final int REQUEST_PERMISSION = 1;
     private static final int REQUEST_IMAGE_PICK = 2;
-    private static final String API_URL = "https://1bac-2001-448a-2061-c58a-351c-3e0c-f2c0-8772.ngrok-free.app/prediksi";
+    private static final String API_URL = "https://731c-125-164-23-108.ngrok-free.app//prediksi";
 
     private ProgressBar progressBar;
     private ImageView imageView;
@@ -75,7 +75,7 @@ public class activity_predict extends AppCompatActivity {
     private ActivityResultLauncher<Intent> imagePickerLauncher;
     private ActivityResultLauncher<String> selectImageLauncher;
 
-
+    long startTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -189,6 +189,7 @@ public class activity_predict extends AppCompatActivity {
     }
 
     private void uploadImage() {
+        startTime = System.currentTimeMillis();
         // Get the selected image from ImageView
         Bitmap bitmap = ((BitmapDrawable) imageView.getDrawable()).getBitmap();
 
@@ -210,7 +211,7 @@ public class activity_predict extends AppCompatActivity {
 
         // Create HTTP request
         Request request = new Request.Builder()
-                .url("https://64c2-125-164-16-235.ngrok-free.app/prediksi")
+                .url("https://731c-125-164-23-108.ngrok-free.app/prediksi")
                 .post(requestBody)
                 .build();
 
@@ -232,6 +233,11 @@ public class activity_predict extends AppCompatActivity {
                         progressBar.setVisibility(View.GONE);
                         // Menampilkan pesan error ke pengguna menggunakan Toast
                         Toast.makeText(activity_predict.this, "Failed to upload image: " + errorMessage, Toast.LENGTH_LONG).show();
+                        // Calculate the time taken
+                        long endTime = System.currentTimeMillis();
+                        long totalTime = endTime - startTime;
+                        // Display the time taken in a toast
+                        Toast.makeText(activity_predict.this, "Process completed in " + totalTime/1000 + " seconds", Toast.LENGTH_SHORT).show();
                     }
                 });
             }
@@ -259,6 +265,11 @@ public class activity_predict extends AppCompatActivity {
                                 // Show label
                                 title.setText("Conf: " + label);
                                 subtitle.setText("Label: " + sublabel);
+                                // Calculate the time taken
+                                long endTime = System.currentTimeMillis();
+                                long totalTime = endTime - startTime;
+                                // Display the time taken in a toast
+                                Toast.makeText(activity_predict.this, "Process completed in " + totalTime/1000 + " seconds", Toast.LENGTH_SHORT).show();
                             }
                         });
 
