@@ -65,26 +65,17 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/titleTxt"
+                    android:id="@+id/classTxt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_weight="1"
-                    android:text="title"
+                    android:text="Class"
                     android:singleLine="true"
                     android:textColor="@color/black"
                     android:textSize="23sp"
                     android:textStyle="bold" />
 
-                <TextView
-                    android:id="@+id/priceTxt"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="16dp"
-                    android:text="0"
-                    android:textColor="@color/black"
-                    android:textSize="23sp"
-                    android:textStyle="bold" />
             </LinearLayout>
 
             <LinearLayout
@@ -102,7 +93,7 @@
                     android:src="@drawable/star" />
 
                 <TextView
-                    android:id="@+id/ratingTxt"
+                    android:id="@+id/confTxt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
@@ -115,32 +106,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:text="Rating"
+                    android:text="%"
                     android:textColor="@color/black" />
 
-                <ImageView
-                    android:id="@+id/imageView12"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:src="@drawable/review" />
-
-                <TextView
-                    android:id="@+id/reviewTxt"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:text="10"
-                    android:textColor="@color/black"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/textView14"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:text="Reviews"
-                    android:textColor="@color/black" />
             </LinearLayout>
 
             <View
@@ -157,7 +125,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
-                android:text="description"
+                android:text="Tentang Penyakit"
                 android:textSize="16sp"
                 android:textColor="@color/black"/>
 

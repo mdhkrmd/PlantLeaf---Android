@@ -3,9 +3,11 @@ package com.example.project167.Activity;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.project167.Helper.ManagmentCart;
@@ -14,46 +16,29 @@ import com.example.project167.databinding.ActivityDetailBinding;
 import com.example.project167.domain.PopularDomain;
 
 public class DetailActivity extends AppCompatActivity {
-    private ActivityDetailBinding binding;
-    private PopularDomain object;
-    private int numberOrder = 1;
-    private ManagmentCart managmentCart;
+
+    TextView classTxt, confTxt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityDetailBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
+        setContentView(R.layout.activity_detail);
 
-        getBundles();
-        managmentCart = new ManagmentCart(this);
-        statusBarColor();
+        classTxt = findViewById(R.id.classTxt);
+        confTxt = findViewById(R.id.confTxt);
+
+        // Get the Intent that started this activity
+        Intent intent = getIntent();
+        if (intent != null) {
+            // Retrieve the data from the Intent
+            String label = intent.getStringExtra("label");
+            String sublabel = intent.getStringExtra("sublabel");
+
+            // Set the text of your TextViews
+            confTxt.setText("Conf: " + label);
+            classTxt.setText("Penyakit: " + sublabel);
+        }
+
     }
 
-    private void statusBarColor() {
-        Window window = DetailActivity.this.getWindow();
-        window.setStatusBarColor(ContextCompat.getColor(DetailActivity.this, R.color.white));
-    }
-
-    private void getBundles() {
-        object = (PopularDomain) getIntent().getSerializableExtra("object");
-
-        int drawableResourceId = this.getResources().getIdentifier(object.getPicUrl(), "drawable", this.getPackageName());
-        Glide.with(this)
-                .load(drawableResourceId)
-                .into(binding.itemPic);
-
-        binding.titleTxt.setText(object.getTitle());
-        binding.priceTxt.setText("$" + object.getPrice());
-        binding.descriptionTxt.setText(object.getDescription());
-        binding.reviewTxt.setText(object.getReview() + "");
-        binding.ratingTxt.setText(object.getScore() + "");
-
-//        binding.addToCardBtn.setOnClickListener(v -> {
-//            object.setNumberInCart(numberOrder);
-//            managmentCart.insertFood(object);
-//        });
-
-        binding.backBtn.setOnClickListener(v -> finish());
-    }
 }

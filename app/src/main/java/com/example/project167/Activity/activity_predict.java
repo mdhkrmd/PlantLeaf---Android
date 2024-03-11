@@ -5,6 +5,9 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
+import android.graphics.Matrix;
+import android.media.ExifInterface;
+import android.os.Build;
 import android.os.Bundle;
 
 import android.Manifest;
@@ -42,6 +45,7 @@ import org.json.JSONObject;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.Call;
@@ -57,12 +61,12 @@ public class activity_predict extends AppCompatActivity {
 
     private static final int REQUEST_PERMISSION = 1;
     private static final int REQUEST_IMAGE_PICK = 2;
-    private static final String API_URL = "https://731c-125-164-23-108.ngrok-free.app//prediksi";
+    private static final String API_URL = "https://6c37-103-23-244-234.ngrok-free.app/prediksi";
 
     private ProgressBar progressBar;
     private ImageView imageView;
     private Button uploadButton;
-    private Button selectButton;
+    private Button selectButton, CameraButton;
     private Button downloadButton;
     private String selectedImageFilename;
     private Bitmap selectedImageBitmap;
@@ -84,11 +88,20 @@ public class activity_predict extends AppCompatActivity {
 
         imageView = findViewById(R.id.imageView);
         selectButton = findViewById(R.id.selectButton);
+        CameraButton = findViewById(R.id.CameraButton);
         uploadButton = findViewById(R.id.predictButton);
         title = findViewById(R.id.txtConf);
         subtitle = findViewById(R.id.txtLabel);
         progressBar = findViewById(R.id.progress);
         progressBar.setVisibility(View.GONE);
+
+        CameraButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent open_camera = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                startActivityForResult(open_camera, 100);
+            }
+        });
 
 
         uploadButton.setOnClickListener(new View.OnClickListener() {
@@ -145,30 +158,42 @@ public class activity_predict extends AppCompatActivity {
         }
     }
 
-
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == REQUEST_IMAGE_PICK && resultCode == RESULT_OK && data != null) {
-            // Get the selected image URI
-            Uri imageUri = data.getData();
-            if (imageUri != null) {
-                try {
-                    // Load the selected image into ImageView
-                    Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imageUri);
-                    imageView.setImageBitmap(bitmap);
-
-                    selectedImageFilename = getFilenameFromUri(imageUri);
-
-                    // Show toast notification
-                    Toast.makeText(activity_predict.this, "Image selected", Toast.LENGTH_SHORT).show();
-                } catch (IOException e) {
-                    e.printStackTrace();
+        if (resultCode == RESULT_OK && data != null) {
+            if (requestCode == REQUEST_IMAGE_PICK) {
+                Uri imageUri = data.getData();
+                if (imageUri != null) {
+                    try {
+                        Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imageUri);
+                        imageView.setImageBitmap(bitmap);
+                        selectedImageFilename = getFilenameFromUri(imageUri);
+                        Toast.makeText(activity_predict.this, "Image selected", Toast.LENGTH_SHORT).show();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            } else {
+                // Check if data has extras and it contains "data" key for the bitmap
+                Bundle extras = data.getExtras();
+                if (extras != null && extras.containsKey("data")) {
+                    Bitmap photo = (Bitmap) extras.get("data");
+                    if (photo != null) {
+                        imageView.setImageBitmap(photo);
+                        Toast.makeText(activity_predict.this, "Photo captured", Toast.LENGTH_SHORT).show();
+                    } else {
+                        // Handle the case where the bitmap is null
+                        Toast.makeText(activity_predict.this, "Failed to capture photo", Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
+        } else {
+            // Handle other cases, such as user cancelling the selection
+            Toast.makeText(activity_predict.this, "No image selected", Toast.LENGTH_SHORT).show();
         }
     }
+
 
     private String getFilenameFromUri(Uri uri) {
         String filename = null;
@@ -211,7 +236,7 @@ public class activity_predict extends AppCompatActivity {
 
         // Create HTTP request
         Request request = new Request.Builder()
-                .url("https://731c-125-164-23-108.ngrok-free.app/prediksi")
+                .url("https://bc16-2001-448a-2061-c58a-944a-bc51-95c7-3609.ngrok-free.app/prediksi")
                 .post(requestBody)
                 .build();
 
@@ -262,9 +287,16 @@ public class activity_predict extends AppCompatActivity {
                                 // Hide progress bar
                                 progressBar.setVisibility(View.GONE);
                                 Toast.makeText(activity_predict.this, "Response received", Toast.LENGTH_SHORT).show();
+
                                 // Show label
                                 title.setText("Conf: " + label);
                                 subtitle.setText("Label: " + sublabel);
+
+                                Intent intent = new Intent(activity_predict.this, DetailActivity.class);
+                                intent.putExtra("label", label); // Assuming 'label' is a String variable
+                                intent.putExtra("sublabel", sublabel); // Assuming 'sublabel' is a String variable
+                                startActivity(intent);
+
                                 // Calculate the time taken
                                 long endTime = System.currentTimeMillis();
                                 long totalTime = endTime - startTime;
