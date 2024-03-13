@@ -45,16 +45,16 @@
             android:name=".Activity.activity_updateprofil"
             android:exported="false" />
         <activity
-            android:name=".Activity.activity_lupa"
+            android:name=".Activity.activity_register"
             android:exported="false" />
         <activity
-            android:name=".Activity.activity_register"
+            android:name=".Activity.MainActivity"
             android:exported="false" />
         <activity
             android:name=".Activity.activity_login"
             android:exported="false" />
         <activity
-            android:name=".Activity.MainActivity"
+            android:name=".Activity.activity_lupa"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

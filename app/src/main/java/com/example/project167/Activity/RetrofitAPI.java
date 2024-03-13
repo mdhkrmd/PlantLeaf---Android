@@ -2,6 +2,9 @@ package com.example.project167.Activity;
 
 //import com.example.donorin.DataModalRegister;
 
+import com.example.project167.Datamodal.DataModalForgot;
+import com.example.project167.Datamodal.DataModalRegister;
+
 import java.util.List;
 
 import retrofit2.Call;
@@ -15,8 +18,8 @@ public interface RetrofitAPI {
     // as we are making a post request to post a data
     // so we are annotating it with post
     // and along with that we are passing a parameter as users
-//    @POST("register")
-//    Call<DataModalRegister> createPost(@Body DataModalRegister dataModal);
+    @POST("register")
+    Call<DataModalRegister> createPost(@Body DataModalRegister dataModal);
 //
 //    @POST("login")
 //    Call<DataModalLogin> createPostLogin(@Body DataModalLogin dataModalLogin);
@@ -26,8 +29,8 @@ public interface RetrofitAPI {
 //            @Query("nik") String nik
 //    );
 //
-//    @POST("forgot")
-//    Call<DataModalForgot> createPostForgot(@Body DataModalForgot dataModalForgot);
+    @POST("forgot")
+    Call<DataModalForgot> createPostForgot(@Body DataModalForgot dataModalForgot);
 
 //    @POST("daftar")
 //    Call<DataModalDaftar> createPostDaftar(@Body DataModalDaftar dataModalDaftar);
