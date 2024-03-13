@@ -24,6 +24,7 @@ import androidx.camera.core.CameraSelector;
 import androidx.camera.core.Preview;
 import androidx.camera.lifecycle.ProcessCameraProvider;
 import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.project167.Adapter.PopularAdapter;
 import com.example.project167.R;
@@ -36,12 +37,18 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
     ActivityMainBinding binding;
     Button buttonChoose;
     FloatingActionButton btnScan;
+    private RecyclerView recyclerViewTrends, rvArtikel;
     private Uri imageUri;
     private static final int CAMERA_REQUEST_CODE = 101;
 
@@ -51,27 +58,31 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        buttonChoose = findViewById(R.id.buttonChoose);
+//        buttonChoose = findViewById(R.id.buttonChoose);
         btnScan = findViewById(R.id.btnScan);
+        rvArtikel = findViewById(R.id.PopularView);
 
-
-        statusBarColor();
-         initRecyclerView();
+         statusBarColor();
+//         initRecyclerView();
          bottomNavigation();
 
-        buttonChoose.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, activity_predict.class);
-                startActivity(intent);
-            }
-        });
+         getArtikel();
+
+//        buttonChoose.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(MainActivity.this, activity_predict.class);
+//                startActivity(intent);
+//            }
+//        });
 
         btnScan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent open_camera = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                startActivityForResult(open_camera, 100);
+                Intent intent = new Intent(MainActivity.this, activity_predict.class);
+                startActivity(intent);
+//                Intent open_camera = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+//                startActivityForResult(open_camera, 100);
             }
         });
 
@@ -91,6 +102,28 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(this, "Camera permission is required to use the camera", Toast.LENGTH_SHORT).show();
             }
         }
+    }
+
+    private void getArtikel() {
+        Call<List<ArtikelData>> apiCall =  RetroServer.getRetrofitAPI().getArtikel();
+        apiCall.enqueue(new Callback<List<ArtikelData>>() {
+            @Override
+            public void onResponse(Call<List<ArtikelData>> call, Response<List<ArtikelData>> response) {
+                List<ArtikelData> artikelDataList = response.body();
+//                Toast.makeText(utama.this, "Artikel terambil", Toast.LENGTH_SHORT).show();
+                setAdapter(artikelDataList);
+            }
+
+            @Override
+            public void onFailure(Call<List<ArtikelData>> call, Throwable t) {
+                Toast.makeText(MainActivity.this, "Error", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+    private void setAdapter(List<ArtikelData> artikelDataList) {
+        rvArtikel.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        ArtikelAdapter artikelAdapter = new ArtikelAdapter(this, artikelDataList);
+        rvArtikel.setAdapter(artikelAdapter);
     }
 
     private void bottomNavigation() {
