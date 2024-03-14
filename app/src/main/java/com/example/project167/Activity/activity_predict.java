@@ -61,8 +61,8 @@ public class activity_predict extends AppCompatActivity {
 
     private static final int REQUEST_PERMISSION = 1;
     private static final int REQUEST_IMAGE_PICK = 2;
-    private static final String API_URL = "https://6c37-103-23-244-234.ngrok-free.app/prediksi";
-
+    final int REQUEST_PERMISSION_CAMERA = 100;
+    final int REQUEST_PERMISSION_GALLERY = 101;
     private ProgressBar progressBar;
     private ImageView imageView;
     private Button uploadButton;
@@ -73,9 +73,8 @@ public class activity_predict extends AppCompatActivity {
     private String selectedAnnotatedImageUrl;
     private TextView title;
     private TextView subtitle;
-    private String sublabel;
     private String modifiedSublabel;
-    private String label;
+    private String label, sublabel, tentang,  gejala, penanganan;
     private ActivityResultLauncher<Intent> imagePickerLauncher;
     private ActivityResultLauncher<String> selectImageLauncher;
 
@@ -90,20 +89,22 @@ public class activity_predict extends AppCompatActivity {
         selectButton = findViewById(R.id.selectButton);
         CameraButton = findViewById(R.id.CameraButton);
         uploadButton = findViewById(R.id.predictButton);
-        title = findViewById(R.id.txtConf);
-        subtitle = findViewById(R.id.txtLabel);
         progressBar = findViewById(R.id.progress);
         progressBar.setVisibility(View.GONE);
 
         CameraButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent open_camera = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                startActivityForResult(open_camera, 100);
+                if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+                    // Requesting the permission
+                    ActivityCompat.requestPermissions(activity_predict.this, new String[]{Manifest.permission.CAMERA}, REQUEST_PERMISSION_CAMERA);
+                } else {
+                    // Permission already granted, launch the camera
+                    Intent open_camera = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                    startActivityForResult(open_camera, 100);
+                }
             }
         });
-
-
         uploadButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -149,14 +150,23 @@ public class activity_predict extends AppCompatActivity {
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == REQUEST_PERMISSION && grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-            // Permission is granted, launch the image picker launcher...
+        if (requestCode == REQUEST_PERMISSION_GALLERY && grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            // Permission is granted for gallery, launch the image picker launcher...
             selectImageLauncher.launch("image/*");
+        } else if (requestCode == REQUEST_PERMISSION_CAMERA && grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            // Permission is granted for camera, launch the camera intent...
+            Intent open_camera = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            startActivityForResult(open_camera, 100);
         } else {
-            // Tampilkan pesan bahwa izin diperlukan...
-            Toast.makeText(this, "Permission is required to access the gallery.", Toast.LENGTH_SHORT).show();
+            // Permission was denied. Show a message explaining why the permission is necessary...
+            if (requestCode == REQUEST_PERMISSION_GALLERY) {
+                Toast.makeText(this, "Permission is required to access the gallery.", Toast.LENGTH_SHORT).show();
+            } else if (requestCode == REQUEST_PERMISSION_CAMERA) {
+                Toast.makeText(this, "Permission is required to access the camera.", Toast.LENGTH_SHORT).show();
+            }
         }
     }
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -236,7 +246,7 @@ public class activity_predict extends AppCompatActivity {
 
         // Create HTTP request
         Request request = new Request.Builder()
-                .url("https://bc16-2001-448a-2061-c58a-944a-bc51-95c7-3609.ngrok-free.app/prediksi")
+                .url("https://269f-2001-448a-2061-c58a-51be-9061-ef41-6b85.ngrok-free.app/prediksi")
                 .post(requestBody)
                 .build();
 
@@ -277,9 +287,11 @@ public class activity_predict extends AppCompatActivity {
                     try {
                         JSONObject jsonObject = new JSONObject(json);
                         final String annotatedImageUrl = jsonObject.optString("annotatedImageUrl");
-                        label = jsonObject.optString("Conf");
-                        sublabel = jsonObject.optString("Label");
-
+                        label = jsonObject.optString("conf");
+                        sublabel = jsonObject.optString("label");
+                        tentang = jsonObject.optString("tentang_penyakit");
+                        gejala = jsonObject.optString("gejala");
+                        penanganan = jsonObject.optString("penanganan");
                         // Show toast notification
                         runOnUiThread(new Runnable() {
                             @Override
@@ -288,13 +300,12 @@ public class activity_predict extends AppCompatActivity {
                                 progressBar.setVisibility(View.GONE);
                                 Toast.makeText(activity_predict.this, "Response received", Toast.LENGTH_SHORT).show();
 
-                                // Show label
-                                title.setText("Conf: " + label);
-                                subtitle.setText("Label: " + sublabel);
-
                                 Intent intent = new Intent(activity_predict.this, DetailActivity.class);
-                                intent.putExtra("label", label); // Assuming 'label' is a String variable
-                                intent.putExtra("sublabel", sublabel); // Assuming 'sublabel' is a String variable
+                                intent.putExtra("label", label);
+                                intent.putExtra("sublabel", sublabel);
+                                intent.putExtra("tentang", tentang);
+                                intent.putExtra("gejala", gejala);
+                                intent.putExtra("penanganan", penanganan);
                                 startActivity(intent);
 
                                 // Calculate the time taken

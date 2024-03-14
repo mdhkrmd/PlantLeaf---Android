@@ -17,7 +17,7 @@ import com.example.project167.domain.PopularDomain;
 
 public class DetailActivity extends AppCompatActivity {
 
-    TextView classTxt, confTxt;
+    TextView classTxt, confTxt, txtTentang, txtGejala, txtPenanganan;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +26,10 @@ public class DetailActivity extends AppCompatActivity {
 
         classTxt = findViewById(R.id.classTxt);
         confTxt = findViewById(R.id.confTxt);
+        txtTentang = findViewById(R.id.txtTentang);
+        txtGejala = findViewById(R.id.txtGejala);
+        txtPenanganan = findViewById(R.id.txtPenanganan);
+
 
         // Get the Intent that started this activity
         Intent intent = getIntent();
@@ -33,10 +37,17 @@ public class DetailActivity extends AppCompatActivity {
             // Retrieve the data from the Intent
             String label = intent.getStringExtra("label");
             String sublabel = intent.getStringExtra("sublabel");
+            String tentang = intent.getStringExtra("tentang");
+            String gejala = intent.getStringExtra("gejala");
+            String penanganan = intent.getStringExtra("penanganan");
+
 
             // Set the text of your TextViews
-            confTxt.setText("Conf: " + label);
-            classTxt.setText("Penyakit: " + sublabel);
+            confTxt.setText(label);
+            classTxt.setText(sublabel);
+            txtTentang.setText(tentang);
+            txtGejala.setText(gejala);
+            txtPenanganan.setText(penanganan);
         }
 
     }

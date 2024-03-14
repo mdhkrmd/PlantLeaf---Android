@@ -4,6 +4,7 @@ package com.example.project167.Activity;
 
 import com.example.project167.Datamodal.DataModalForgot;
 import com.example.project167.Datamodal.DataModalRegister;
+import com.example.project167.Datamodal.DataModalLogin;
 
 import java.util.List;
 
@@ -21,13 +22,13 @@ public interface RetrofitAPI {
     @POST("register")
     Call<DataModalRegister> createPost(@Body DataModalRegister dataModal);
 //
-//    @POST("login")
-//    Call<DataModalLogin> createPostLogin(@Body DataModalLogin dataModalLogin);
+    @POST("login")
+    Call<DataModalLogin> createPostLogin(@Body DataModalLogin dataModalLogin);
 //
-//    @GET("users")
-//    Call<List<DataModalLogin>> getLoginData(
-//            @Query("nik") String nik
-//    );
+    @GET("users")
+    Call<List<DataModalLogin>> getLoginData(
+            @Query("nik") String nik
+    );
 //
     @POST("forgot")
     Call<DataModalForgot> createPostForgot(@Body DataModalForgot dataModalForgot);
