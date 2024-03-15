@@ -1,10 +1,14 @@
 package com.example.project167.Activity;
 
+import static com.example.project167.Activity.MainActivity.setStatusBarColor;
+
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -48,6 +52,8 @@ public class activity_lupa extends AppCompatActivity {
                 }
             }
         });
+
+        setStatusBarColor(activity_lupa.this);
     }
     private void postDataForgot(String username, String new_password) {
 

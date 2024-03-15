@@ -1,5 +1,7 @@
 package com.example.project167.Activity;
 
+import static com.example.project167.Activity.MainActivity.setStatusBarColor;
+
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
@@ -91,6 +93,7 @@ public class activity_predict extends AppCompatActivity {
         uploadButton = findViewById(R.id.predictButton);
         progressBar = findViewById(R.id.progress);
         progressBar.setVisibility(View.GONE);
+        setStatusBarColor(activity_predict.this);
 
         CameraButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -246,7 +249,7 @@ public class activity_predict extends AppCompatActivity {
 
         // Create HTTP request
         Request request = new Request.Builder()
-                .url("https://269f-2001-448a-2061-c58a-51be-9061-ef41-6b85.ngrok-free.app/prediksi")
+                .url(RetroServer.BASE_URL + "/prediksi")
                 .post(requestBody)
                 .build();
 

@@ -59,7 +59,8 @@
                 android:paddingLeft="10dp"
                 android:textColor="#f7f7f7"
                 android:textColorHint="#f7f7f7"
-                android:textSize="15dp" />
+                android:textSize="15dp"
+                android:enabled="false"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -80,33 +81,9 @@
                 android:textColorHint="#f7f7f7"
                 android:textSize="15dp" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:orientation="horizontal">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:fontFamily="@font/playfairdisplaymedium"
-                    android:text="Sudah punya akun?"
-                    android:textSize="15dp" />
-
-                <TextView
-                    android:id="@+id/tvLogin"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:fontFamily="@font/playfairdisplaybold"
-                    android:text="Masuk"
-                    android:textSize="15dp"
-                    android:textStyle="bold" />
-
-            </LinearLayout>
             <Button
-                android:id="@+id/idBtnPost"
+                android:id="@+id/btnUpdate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"

@@ -1,5 +1,7 @@
 package com.example.project167.Activity;
 
+import static com.example.project167.Activity.MainActivity.setStatusBarColor;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -34,6 +36,8 @@ public class activity_register extends AppCompatActivity {
         inputNama = findViewById(R.id.editNama);
         tvLogin = findViewById(R.id.tvLogin);
         btnPost = findViewById(R.id.idBtnPost);
+
+        setStatusBarColor(activity_register.this);
 
         btnPost.setOnClickListener(new View.OnClickListener() {
             @Override

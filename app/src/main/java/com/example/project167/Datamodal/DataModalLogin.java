@@ -1,5 +1,7 @@
 package com.example.project167.Datamodal;
 
+import com.google.gson.annotations.SerializedName;
+
 public class DataModalLogin {
     private String username;
     private String password;
@@ -8,6 +10,7 @@ public class DataModalLogin {
     private String darah;
     private String lahir;
     private String message;
+    @SerializedName("nama")
     private String nama;
     private String nik;
     private String nohp;

@@ -5,6 +5,7 @@ package com.example.project167.Activity;
 import com.example.project167.Datamodal.DataModalForgot;
 import com.example.project167.Datamodal.DataModalRegister;
 import com.example.project167.Datamodal.DataModalLogin;
+import com.example.project167.Datamodal.DataModalUpdateProfil;
 
 import java.util.List;
 
@@ -36,8 +37,8 @@ public interface RetrofitAPI {
 //    @POST("daftar")
 //    Call<DataModalDaftar> createPostDaftar(@Body DataModalDaftar dataModalDaftar);
 //
-//    @POST("updateprofil")
-//    Call<DataModalUpdateProfil> createPostUpdate(@Body DataModalUpdateProfil dataModalUpdateProfil);
+    @POST("update")
+    Call<DataModalUpdateProfil> createPostUpdate(@Body DataModalUpdateProfil dataModalUpdateProfil);
 //
 //    @GET("darah-darurat")
 //    Call<List<DataModalDarahDarurat>> getDataDarahDaruratList();

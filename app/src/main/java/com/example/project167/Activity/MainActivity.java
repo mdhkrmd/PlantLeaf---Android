@@ -1,5 +1,6 @@
 package com.example.project167.Activity;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -28,6 +29,7 @@ import androidx.camera.core.Preview;
 import androidx.camera.lifecycle.ProcessCameraProvider;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.project167.Adapter.PopularAdapter;
 import com.example.project167.Datamodal.DataModalLogin;
@@ -56,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
     private Uri imageUri;
     private static final int CAMERA_REQUEST_CODE = 101;
 
-//    SwipeRefreshLayout swipeRefreshLayout;
+    SwipeRefreshLayout swipeRefreshLayout;
 
     private static final String PREFS_NAME = "YourPrefsFile";
     private static final String KEY_NIK = "nik";
@@ -74,8 +76,10 @@ public class MainActivity extends AppCompatActivity {
         ambilNik = findViewById(R.id.textView);
         ambilNama = findViewById(R.id.textView2);
         txtProfil = findViewById(R.id.textView10);
+        swipeRefreshLayout = findViewById(R.id.swipeRefreshLayout);
 
-         statusBarColor();
+        setStatusBarColor(MainActivity.this);
+
 //         initRecyclerView();
          bottomNavigation();
 
@@ -103,6 +107,14 @@ public class MainActivity extends AppCompatActivity {
 //                startActivity(intent);
 //            }
 //        });
+
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                getArtikel();
+                swipeRefreshLayout.setRefreshing(false); // Hentikan animasi refresh
+            }
+        });
 
         btnScan.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -165,9 +177,9 @@ public class MainActivity extends AppCompatActivity {
         binding.cartBtn.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, CartActivity.class)));
     }
 
-    private void statusBarColor() {
-        Window window=MainActivity.this.getWindow();
-        window.setStatusBarColor(ContextCompat.getColor(MainActivity.this,R.color.purple_Dark));
+    public static void setStatusBarColor(Activity activity) {
+        Window window = activity.getWindow();
+        window.setStatusBarColor(ContextCompat.getColor(activity,R.color.greenP));
     }
     public static void storeNik(Context context, String nik) {
         SharedPreferences preferences = context.getSharedPreferences(PREFS_NAME, MODE_PRIVATE);

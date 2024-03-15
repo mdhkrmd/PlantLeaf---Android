@@ -1,5 +1,6 @@
 package com.example.project167.Activity;
 
+import static com.example.project167.Activity.MainActivity.setStatusBarColor;
 import static com.example.project167.Activity.MainActivity.storeNik;
 
 import android.content.Intent;
@@ -42,6 +43,7 @@ public class activity_profil extends AppCompatActivity {
         txtUpdate = findViewById(R.id.txtUpdate);
         txtLogout = findViewById(R.id.txtLogout);
         halamanUtama = findViewById(R.id.textView101);
+        setStatusBarColor(activity_profil.this);
 
         String nik = getStoredNik3();
 
@@ -75,6 +77,17 @@ public class activity_profil extends AppCompatActivity {
                 Intent intentPindah = new Intent(activity_profil.this, activity_login.class);
                 startActivity(intentPindah);
                 finish();
+            }
+        });
+
+        txtUpdate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentPindah = new Intent(activity_profil.this, activity_updateprofil.class);
+                intentPindah.putExtra("nik", ambilNik.getText().toString());
+                intentPindah.putExtra("nama", ambilNama.getText().toString());
+
+                startActivity(intentPindah);
             }
         });
     }

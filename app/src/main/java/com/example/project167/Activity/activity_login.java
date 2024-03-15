@@ -1,12 +1,16 @@
 package com.example.project167.Activity;
 
+import static com.example.project167.Activity.MainActivity.setStatusBarColor;
+
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -113,6 +117,8 @@ public class activity_login extends AppCompatActivity {
                 loginPrefsEditor.apply();
             }
         });
+
+        setStatusBarColor(activity_login.this);
     }
 
     public static void clearLoginPreferences(Context context) {
