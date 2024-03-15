@@ -50,8 +50,8 @@ public interface RetrofitAPI {
 //    Call<DataModalDaftar> createPostDaftarDonorDarurat(@Body DataModalDaftar dataModalDaftar);
 //
 //
-//    @GET("rspmi")
-//    Call<List<RspmiData>> getData();
+    @GET("tanaman")
+    Call<List<TanamanData>> getTanaman();
 //
 //    @GET("rspmi/detail")
 //    Call<List<RspmiData>> getRspmiDetail(

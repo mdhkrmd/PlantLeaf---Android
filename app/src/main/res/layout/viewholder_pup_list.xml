@@ -40,6 +40,7 @@
         android:layout_marginTop="4dp"
         android:text="Judul"
         android:textColor="@color/black"
+        android:textSize="12dp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/view" />
@@ -50,6 +51,7 @@
         android:layout_height="wrap_content"
         android:text="Penulis"
         android:textColor="@color/greenP"
+        android:textSize="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/titleTxt"
         app:layout_constraintTop_toBottomOf="@+id/titleTxt" />

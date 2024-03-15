@@ -32,6 +32,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.project167.Adapter.PopularAdapter;
+import com.example.project167.Adapter.TanamanAdapter;
 import com.example.project167.Datamodal.DataModalLogin;
 import com.example.project167.R;
 import com.example.project167.databinding.ActivityMainBinding;
@@ -54,12 +55,10 @@ public class MainActivity extends AppCompatActivity {
     ActivityMainBinding binding;
     Button buttonChoose;
     FloatingActionButton btnScan;
-    private RecyclerView recyclerViewTrends, rvArtikel;
+    private RecyclerView recyclerViewTrends, rvArtikel, rvTanaman;
     private Uri imageUri;
     private static final int CAMERA_REQUEST_CODE = 101;
-
     SwipeRefreshLayout swipeRefreshLayout;
-
     private static final String PREFS_NAME = "YourPrefsFile";
     private static final String KEY_NIK = "nik";
     TextView ambilNik, ambilNama, txtProfil;
@@ -72,18 +71,23 @@ public class MainActivity extends AppCompatActivity {
 
 //        buttonChoose = findViewById(R.id.buttonChoose);
         btnScan = findViewById(R.id.btnScan);
+
         rvArtikel = findViewById(R.id.PopularView);
+        rvTanaman = findViewById(R.id.tanamanView);
+
         ambilNik = findViewById(R.id.textView);
         ambilNama = findViewById(R.id.textView2);
         txtProfil = findViewById(R.id.textView10);
+
         swipeRefreshLayout = findViewById(R.id.swipeRefreshLayout);
 
         setStatusBarColor(MainActivity.this);
 
 //         initRecyclerView();
-         bottomNavigation();
+        bottomNavigation();
 
-         getArtikel();
+        getArtikel();
+        getTanaman();
 
         String nik = getStoredNik();
 
@@ -97,16 +101,7 @@ public class MainActivity extends AppCompatActivity {
                 storeNik(MainActivity.this, nik);
             }
         }
-
         getDataLogin(nik);
-
-//        buttonChoose.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(MainActivity.this, activity_predict.class);
-//                startActivity(intent);
-//            }
-//        });
 
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -151,6 +146,21 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    private void getTanaman() {
+        Call<List<TanamanData>> apiCall =  RetroServer.getRetrofitAPI().getTanaman();
+        apiCall.enqueue(new Callback<List<TanamanData>>() {
+            @Override
+            public void onResponse(Call<List<TanamanData>> call, Response<List<TanamanData>> response) {
+                List<TanamanData> tanamanDataList = response.body();
+                setAdapter2(tanamanDataList);
+            }
+
+            @Override
+            public void onFailure(Call<List<TanamanData>> call, Throwable t) {
+                Toast.makeText(MainActivity.this, "Error", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
     private void getArtikel() {
         Call<List<ArtikelData>> apiCall =  RetroServer.getRetrofitAPI().getArtikel();
         apiCall.enqueue(new Callback<List<ArtikelData>>() {
@@ -171,6 +181,12 @@ public class MainActivity extends AppCompatActivity {
         rvArtikel.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         ArtikelAdapter artikelAdapter = new ArtikelAdapter(this, artikelDataList);
         rvArtikel.setAdapter(artikelAdapter);
+    }
+
+    private void setAdapter2(List<TanamanData> tanamanDataList) {
+        rvTanaman.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        TanamanAdapter tanamanAdapter = new TanamanAdapter(this, tanamanDataList);
+        rvTanaman.setAdapter(tanamanAdapter);
     }
 
     private void bottomNavigation() {
