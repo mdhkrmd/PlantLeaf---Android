@@ -1,6 +1,8 @@
 package com.example.project167.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.project167.Activity.TanamanData;
+import com.example.project167.Activity.activity_detailtanaman;
 import com.example.project167.R;
 
 import java.util.List;
@@ -43,15 +46,22 @@ public class TanamanAdapter extends RecyclerView.Adapter<TanamanAdapter.Viewhold
         holder.title.setText(tanamanData.getnama_tanaman());
 
 //        Buat nanti kalo gambar di klik -> Buat detail
-//        holder.pic.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                String linkArtikel = tanamanData.getLinkArtikel();
-//                Uri webpage = Uri.parse(linkArtikel);
-//                Intent i = new Intent(Intent.ACTION_VIEW, webpage);
-//                context.startActivity(i);
-//            }
-//        });
+        holder.pic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, activity_detailtanaman.class);
+
+                Bundle bundle = new Bundle();
+                bundle.putString("nama" , tanamanData.getnama_tanaman());
+                bundle.putString("tentang" , tanamanData.gettentang());
+                bundle.putString("merawat" , tanamanData.getmerawat());
+                bundle.putString("gambar" , tanamanData.getgambar());
+
+                intent.putExtras(bundle);
+
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override
