@@ -7,6 +7,7 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
+import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.media.ExifInterface;
 import android.os.Build;
@@ -27,6 +28,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -73,10 +75,11 @@ public class activity_predict extends AppCompatActivity {
     private String selectedImageFilename;
     private Bitmap selectedImageBitmap;
     private String selectedAnnotatedImageUrl;
-    private TextView title;
+    private TextView title, txtNama, txtNIK;
     private TextView subtitle;
     private String modifiedSublabel;
     private String label, sublabel, tentang,  gejala, penanganan, base64Image;
+
     private ActivityResultLauncher<Intent> imagePickerLauncher;
     private ActivityResultLauncher<String> selectImageLauncher;
 
@@ -93,7 +96,20 @@ public class activity_predict extends AppCompatActivity {
         uploadButton = findViewById(R.id.predictButton);
         progressBar = findViewById(R.id.progress);
         progressBar.setVisibility(View.GONE);
+        txtNama = findViewById(R.id.txtNama);
+        txtNIK = findViewById(R.id.txtNik);
         setStatusBarColor(activity_predict.this);
+
+        Intent intent = getIntent();
+        if (intent != null) {
+            // Retrieve the data from the Intent
+            String nik = intent.getStringExtra("nik");
+            String nama = intent.getStringExtra("nama");
+
+            // Set the text of your TextViews
+            txtNama.setText(nama);
+            txtNIK.setText(nik);
+        }
 
         CameraButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -245,11 +261,13 @@ public class activity_predict extends AppCompatActivity {
         RequestBody requestBody = new MultipartBody.Builder()
                 .setType(MultipartBody.FORM)
                 .addFormDataPart("file", imageFile.getName(), RequestBody.create(MediaType.parse("image/*"), imageFile))
+                .addFormDataPart("nama", txtNama.getText().toString())
+                .addFormDataPart("nik", txtNIK.getText().toString())
                 .build();
 
         // Create HTTP request
         Request request = new Request.Builder()
-                .url(RetroServer.BASE_URL + "/prediksi")
+                .url(RetroServer.BASE_URL + "/prediksiupload")
                 .post(requestBody)
                 .build();
 

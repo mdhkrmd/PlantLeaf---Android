@@ -58,10 +58,10 @@ public interface RetrofitAPI {
 //            @Query("id") int id
 //    );
 //
-//    @GET("riwayat")
-//    Call<List<riwayatData>> getRiwayat(
-//            @Query("nik") String nik
-//    );
+    @GET("riwayat")
+    Call<List<riwayatData>> getRiwayat(
+            @Query("nik") String nik
+    );
 
     @GET("artikel")
     Call<List<ArtikelData>> getArtikel();

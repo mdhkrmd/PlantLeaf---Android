@@ -62,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
     private static final String PREFS_NAME = "YourPrefsFile";
     private static final String KEY_NIK = "nik";
     TextView ambilNik, ambilNama, txtProfil;
+    TextView txtRiwayat;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,6 +79,7 @@ public class MainActivity extends AppCompatActivity {
         ambilNik = findViewById(R.id.textView);
         ambilNama = findViewById(R.id.textView2);
         txtProfil = findViewById(R.id.textView10);
+        txtRiwayat = findViewById(R.id.textView104);
 
         swipeRefreshLayout = findViewById(R.id.swipeRefreshLayout);
 
@@ -115,6 +117,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, activity_predict.class);
+                intent.putExtra("nik", ambilNik.getText().toString());
+                intent.putExtra("nama", ambilNama.getText().toString());
                 startActivity(intent);
 //                Intent open_camera = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 //                startActivityForResult(open_camera, 100);
@@ -127,6 +131,15 @@ public class MainActivity extends AppCompatActivity {
                 Intent intentPindah = new Intent(MainActivity.this, activity_profil.class);
                 intentPindah.putExtra("nik", ambilNik.getText().toString());
                 intentPindah.putExtra("nama", ambilNama.getText().toString());
+                startActivity(intentPindah);
+            }
+        });
+
+        txtRiwayat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentPindah = new Intent(MainActivity.this, activity_riwayat.class);
+                intentPindah.putExtra("nik", ambilNik.getText().toString());
                 startActivity(intentPindah);
             }
         });
