@@ -260,10 +260,13 @@ public class activity_predict extends AppCompatActivity {
         // Create multipart request body
         RequestBody requestBody = new MultipartBody.Builder()
                 .setType(MultipartBody.FORM)
-                .addFormDataPart("file", imageFile.getName(), RequestBody.create(MediaType.parse("image/*"), imageFile))
+                // Use System.currentTimeMillis() to get the current timestamp and convert it to a String
+                .addFormDataPart("file", System.currentTimeMillis() + ".jpg", // Adding ".jpg" as an example file extension
+                        RequestBody.create(MediaType.parse("image/*"), imageFile))
                 .addFormDataPart("nama", txtNama.getText().toString())
                 .addFormDataPart("nik", txtNIK.getText().toString())
                 .build();
+
 
         // Create HTTP request
         Request request = new Request.Builder()
