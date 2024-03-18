@@ -20,6 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.project167.Adapter.riwayatAdapter;
 import com.example.project167.R;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
 
@@ -30,19 +31,23 @@ import retrofit2.Response;
 public class activity_riwayat extends AppCompatActivity {
 
     RecyclerView rvRiwayat;
-    TextView btnRspmi, btnPengaturan, btnUtama;
-
+    TextView btnRspmi, btnProfil, btnUtama;
+    FloatingActionButton btnScan;
+    TextView ambilNama, ambilNik;
     private static final String PREFS_NAME = "YourPrefsFile";
     private static final String KEY_NIK = "nik";
+    private String nik2, nama2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_riwayat);
         rvRiwayat = findViewById(R.id.rvRiwayat);
-//        btnRspmi = findViewById(R.id.btnRspmi);
-//        btnPengaturan = findViewById(R.id.btnPengaturan);
+        btnScan = findViewById(R.id.btnScan);
+        btnProfil = findViewById(R.id.textView10);
         btnUtama = findViewById(R.id.textView101);
+        ambilNama = findViewById(R.id.ambilNama);
+        ambilNik = findViewById(R.id.ambilNik);
 
         setStatusBarColor(activity_riwayat.this);
 
@@ -60,23 +65,29 @@ public class activity_riwayat extends AppCompatActivity {
         }
         getRiwayat(nik);
 
-//        btnRspmi.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intentPindah = new Intent(listRiwayat.this, listRspmi.class);
-//
-//                startActivity(intentPindah);
-//            }
-//        });
-//
-//        btnPengaturan.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intentPindah = new Intent(listRiwayat.this, profil.class);
-//
-//                startActivity(intentPindah);
-//            }
-//        });
+        Intent intent = getIntent();
+        nik2 = intent.getStringExtra("nik");
+        nama2 = intent.getStringExtra("nama");
+
+        btnScan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(activity_riwayat.this, activity_predict.class);
+                intent.putExtra("nik", nik2.toString());
+                intent.putExtra("nama", nama2.toString());
+                startActivity(intent);
+//                Intent open_camera = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+//                startActivityForResult(open_camera, 100);
+            }
+        });
+        btnProfil.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentPindah = new Intent(activity_riwayat.this, activity_profil.class);
+
+                startActivity(intentPindah);
+            }
+        });
 //
         btnUtama.setOnClickListener(new View.OnClickListener() {
             @Override

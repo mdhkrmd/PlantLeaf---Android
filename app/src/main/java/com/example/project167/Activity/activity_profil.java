@@ -18,6 +18,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.example.project167.R;
 import com.example.project167.Datamodal.DataModalLogin;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
 
@@ -27,8 +28,10 @@ import retrofit2.Response;
 
 public class activity_profil extends AppCompatActivity {
 
-    TextView ambilNama, txtUpdate, txtLogout, ambilNik;
+    TextView ambilNama, txtUpdate, txtLogout, ambilNik, txtRiwayat;
     TextView halamanUtama;
+//    private String nama;
+    FloatingActionButton btnScan;
 
     private static final String PREFS_NAME = "YourPrefsFile";
     private static final String KEY_NIK = "nik";
@@ -43,6 +46,8 @@ public class activity_profil extends AppCompatActivity {
         txtUpdate = findViewById(R.id.txtUpdate);
         txtLogout = findViewById(R.id.txtLogout);
         halamanUtama = findViewById(R.id.textView101);
+        txtRiwayat = findViewById(R.id.textView104);
+        btnScan = findViewById(R.id.btnScan);
         setStatusBarColor(activity_profil.this);
 
         String nik = getStoredNik3();
@@ -52,6 +57,7 @@ public class activity_profil extends AppCompatActivity {
             Intent intent = getIntent();
             if (intent != null && intent.hasExtra("nik")) {
                 nik = intent.getStringExtra("nik");
+//                nama = intent.getStringExtra("nama");
 
                 // Simpan nik ke SharedPreferences
                 storeNik(activity_profil.this, nik);
@@ -88,6 +94,28 @@ public class activity_profil extends AppCompatActivity {
                 intentPindah.putExtra("nama", ambilNama.getText().toString());
 
                 startActivity(intentPindah);
+            }
+        });
+
+        txtRiwayat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentPindah = new Intent(activity_profil.this, activity_riwayat.class);
+                intentPindah.putExtra("nik", ambilNik.getText().toString());
+                intentPindah.putExtra("nama", ambilNama.getText().toString());
+                startActivity(intentPindah);
+            }
+        });
+
+        btnScan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(activity_profil.this, activity_predict.class);
+                intent.putExtra("nik", ambilNik.getText().toString());
+                intent.putExtra("nama", ambilNama.getText().toString());
+                startActivity(intent);
+//                Intent open_camera = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+//                startActivityForResult(open_camera, 100);
             }
         });
     }

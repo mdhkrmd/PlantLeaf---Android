@@ -140,6 +140,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intentPindah = new Intent(MainActivity.this, activity_riwayat.class);
                 intentPindah.putExtra("nik", ambilNik.getText().toString());
+                intentPindah.putExtra("nama", ambilNama.getText().toString());
                 startActivity(intentPindah);
             }
         });

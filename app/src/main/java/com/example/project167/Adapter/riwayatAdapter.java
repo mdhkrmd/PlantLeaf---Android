@@ -38,7 +38,7 @@ public class riwayatAdapter extends RecyclerView.Adapter<riwayatAdapter.riwayatV
         riwayatData riwayatData = riwayatList.get(position);
         Glide.with(context)
                 .load(riwayatList.get(position).getGambarRiwayat())
-                .into(holder.imageRiwayat);
+                .into(holder.pic);
         holder.txtId.setText(riwayatData.getIdRiwayat());
         holder.txtTanggal.setText(riwayatData.getTanggalRiwayat());
         holder.txtPenyakit.setText(riwayatData.getPenyakitRiwayat());
@@ -51,14 +51,14 @@ public class riwayatAdapter extends RecyclerView.Adapter<riwayatAdapter.riwayatV
 
     static class riwayatViewHolder extends RecyclerView.ViewHolder {
         TextView txtTanggal, txtId, txtPenyakit;
-        ImageView imageRiwayat;
+        private ImageView pic;
 
         riwayatViewHolder(@NonNull View itemView) {
             super(itemView);
             txtTanggal = itemView.findViewById(R.id.txtTanggal);
             txtId = itemView.findViewById(R.id.txtId);
             txtPenyakit = itemView.findViewById(R.id.txtPenyakit);
-            imageRiwayat = itemView.findViewById(R.id.imageView9);
+            pic = itemView.findViewById(R.id.pic);
         }
     }
 }
