@@ -90,7 +90,7 @@ public class activity_predict extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_predict);
 
-        imageView = findViewById(R.id.imageView);
+        imageView = findViewById(R.id.itemPic);
         selectButton = findViewById(R.id.selectButton);
         CameraButton = findViewById(R.id.CameraButton);
         uploadButton = findViewById(R.id.predictButton);

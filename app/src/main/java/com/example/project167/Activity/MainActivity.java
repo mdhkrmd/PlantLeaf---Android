@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
         setStatusBarColor(MainActivity.this);
 
 //         initRecyclerView();
-        bottomNavigation();
+//        bottomNavigation();
 
         getArtikel();
         getTanaman();
@@ -202,9 +202,9 @@ public class MainActivity extends AppCompatActivity {
         rvTanaman.setAdapter(tanamanAdapter);
     }
 
-    private void bottomNavigation() {
-        binding.cartBtn.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, CartActivity.class)));
-    }
+//    private void bottomNavigation() {
+//        binding.cartBtn.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, CartActivity.class)));
+//    }
 
     public static void setStatusBarColor(Activity activity) {
         Window window = activity.getWindow();

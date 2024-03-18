@@ -20,7 +20,7 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/cd_black"
         android:layout_width="match_parent"
-        android:layout_height="600dp"
+        android:layout_height="650dp"
         android:backgroundTint="#f7f7f7"
         app:layout_constraintBottom_toBottomOf="parent">
 

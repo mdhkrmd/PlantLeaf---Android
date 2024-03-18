@@ -1,16 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/plants"
+    >
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/rectangle"
+        app:layout_constraintBottom_toTopOf="@id/cd_black"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:id="@+id/img_rectangle" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cd_black"
         android:layout_width="match_parent"
-        android:layout_height="700dp"
+        android:layout_height="600dp"
         android:backgroundTint="#f7f7f7"
         app:layout_constraintBottom_toBottomOf="parent">
 
@@ -18,7 +28,7 @@
             android:id="@+id/tvMasuk"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Update Data Pribadi"
+            android:text="Ubah Profil"
             android:fontFamily="@font/playfairdisplaybold"
             android:textSize="30dp"
             android:layout_marginTop="30dp"
@@ -27,7 +37,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Halaman ini digunakan untuk melakukan perubahan data pribadi"
+            android:text="Ubah nama akun anda"
             android:fontFamily="@font/playfairdisplaymedium"
             android:textSize="15dp"
             android:layout_marginTop="75dp"
@@ -36,60 +46,58 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="100dp"
             android:orientation="vertical"
-            android:padding="20dp">
+            android:padding="20dp"
+            android:layout_marginTop="100dp">
 
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:fontFamily="@font/playfairdisplayregular"
-                android:text="NIK" />
+                android:text="NIK"
+                android:fontFamily="@font/playfairdisplayregular"/>
 
             <EditText
                 android:id="@+id/editNik"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
-                android:layout_marginTop="8dp"
                 android:background="@drawable/shape"
-                android:hint="NIK.."
-                android:inputType="number"
+                android:hint="NIK..."
+                android:textColor="#989696"
+                android:textColorHint="#989696"
                 android:paddingLeft="10dp"
-                android:textColor="#f7f7f7"
-                android:textColorHint="#f7f7f7"
                 android:textSize="15dp"
+                android:layout_marginTop="8dp"
                 android:enabled="false"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="Nama"
                 android:layout_marginTop="15dp"
-                android:fontFamily="@font/playfairdisplayregular"
-                android:text="Nama" />
+                android:fontFamily="@font/playfairdisplayregular"/>
 
             <EditText
                 android:id="@+id/editNama"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
-                android:layout_marginTop="8dp"
                 android:background="@drawable/shape"
-                android:hint="Nama..."
-                android:paddingLeft="10dp"
+                android:hint="Nama"
+                android:inputType="text"
                 android:textColor="#f7f7f7"
                 android:textColorHint="#f7f7f7"
-                android:textSize="15dp" />
-
+                android:paddingLeft="10dp"
+                android:textSize="15dp"
+                android:layout_marginTop="8dp"/>
 
             <Button
                 android:id="@+id/btnUpdate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="35dp"
                 android:backgroundTint="#114232"
                 android:fontFamily="@font/playfairdisplaybold"
-                android:text="Update Akun"
+                android:text="Ubah"
                 android:textSize="18dp" />
 
         </LinearLayout>

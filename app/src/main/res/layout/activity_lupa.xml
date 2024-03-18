@@ -119,7 +119,7 @@
                 android:id="@+id/btnForgot"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="35dp"
                 android:text="Ubah Password"
                 android:fontFamily="@font/playfairdisplaybold"
                 android:textSize="18dp"

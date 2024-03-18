@@ -115,7 +115,7 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
-            android:background="#BED754"
+            android:background="@color/greenP"
             android:gravity="center"
             android:text="Riwayat"
             android:textColor="@color/white"
