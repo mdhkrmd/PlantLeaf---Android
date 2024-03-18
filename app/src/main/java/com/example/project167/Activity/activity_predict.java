@@ -32,6 +32,7 @@ import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -79,11 +80,11 @@ public class activity_predict extends AppCompatActivity {
     private TextView subtitle;
     private String modifiedSublabel;
     private String label, sublabel, tentang,  gejala, penanganan, base64Image;
-
     private ActivityResultLauncher<Intent> imagePickerLauncher;
     private ActivityResultLauncher<String> selectImageLauncher;
-
+    private String nik, nama;
     long startTime;
+    private CheckBox chkBox;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,18 +99,19 @@ public class activity_predict extends AppCompatActivity {
         progressBar.setVisibility(View.GONE);
         txtNama = findViewById(R.id.txtNama);
         txtNIK = findViewById(R.id.txtNik);
+        chkBox = findViewById(R.id.checkBoxBB);
+
         setStatusBarColor(activity_predict.this);
 
         Intent intent = getIntent();
-        if (intent != null) {
-            // Retrieve the data from the Intent
-            String nik = intent.getStringExtra("nik");
-            String nama = intent.getStringExtra("nama");
+        // Retrieve the data from the Intent
+        nik = intent.getStringExtra("nik");
+        nama = intent.getStringExtra("nama");
 
-            // Set the text of your TextViews
-            txtNama.setText(nama);
-            txtNIK.setText(nik);
-        }
+        // Set the text of your TextViews
+//            txtNama.setText(nama);
+//            txtNIK.setText(nik);
+
 
         CameraButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -258,19 +260,29 @@ public class activity_predict extends AppCompatActivity {
                 .build();
 
         // Create multipart request body
-        RequestBody requestBody = new MultipartBody.Builder()
+        // Assuming chkBox is a CheckBox instance
+
+// Create the base part of the multipart request body
+        MultipartBody.Builder builder = new MultipartBody.Builder()
                 .setType(MultipartBody.FORM)
                 // Use System.currentTimeMillis() to get the current timestamp and convert it to a String
                 .addFormDataPart("file", System.currentTimeMillis() + ".jpg", // Adding ".jpg" as an example file extension
                         RequestBody.create(MediaType.parse("image/*"), imageFile))
-                .addFormDataPart("nama", txtNama.getText().toString())
-                .addFormDataPart("nik", txtNIK.getText().toString())
-                .build();
+                .addFormDataPart("nama", nama.toString())
+                .addFormDataPart("nik", nik.toString());
 
+                // Conditionally add "bb" part based on the checkbox state
+                if (chkBox.isChecked()) {
+                    builder.addFormDataPart("bb", "yes");
+                } else {
+                    builder.addFormDataPart("bb", "no");
+                }
+                // Finally build the request body
+                RequestBody requestBody = builder.build();
 
         // Create HTTP request
         Request request = new Request.Builder()
-                .url(RetroServer.BASE_URL + "/prediksiupload")
+                .url(RetroServer.BASE_URL + "/prediksiuploadopsi")
                 .post(requestBody)
                 .build();
 

@@ -1,5 +1,7 @@
 package com.example.project167.Activity;
 
+import static com.example.project167.Activity.MainActivity.setStatusBarColor;
+
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -27,6 +29,8 @@ public class activity_detailtanaman extends AppCompatActivity {
         txtNama = findViewById(R.id.txtNama);
         txtTentang = findViewById(R.id.txtTentang);
         txtMerawat = findViewById(R.id.txtMerawat);
+
+        setStatusBarColor(activity_detailtanaman.this);
 
         Bundle bundle = getIntent().getExtras();
 

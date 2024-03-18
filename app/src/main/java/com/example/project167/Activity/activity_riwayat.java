@@ -1,5 +1,6 @@
 package com.example.project167.Activity;
 
+import static com.example.project167.Activity.MainActivity.setStatusBarColor;
 import static com.example.project167.Activity.MainActivity.storeNik;
 
 import android.content.Intent;
@@ -42,6 +43,8 @@ public class activity_riwayat extends AppCompatActivity {
 //        btnRspmi = findViewById(R.id.btnRspmi);
 //        btnPengaturan = findViewById(R.id.btnPengaturan);
         btnUtama = findViewById(R.id.textView101);
+
+        setStatusBarColor(activity_riwayat.this);
 
         String nik = getStoredNik2();
 
