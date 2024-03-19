@@ -109,8 +109,8 @@ public class activity_predict extends AppCompatActivity {
         nama = intent.getStringExtra("nama");
 
         // Set the text of your TextViews
-            txtNama.setText(nama);
-            txtNIK.setText(nik);
+//            txtNama.setText(nama);
+//            txtNIK.setText(nik);
 
 
         CameraButton.setOnClickListener(new View.OnClickListener() {
