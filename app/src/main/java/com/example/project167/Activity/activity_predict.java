@@ -254,9 +254,9 @@ public class activity_predict extends AppCompatActivity {
 
         // Create HTTP client with timeouts
         OkHttpClient client = new OkHttpClient.Builder()
-                .connectTimeout(60, TimeUnit.SECONDS)  // Timeout untuk membangun koneksi awal
-                .writeTimeout(60, TimeUnit.SECONDS)    // Timeout untuk menulis data ke koneksi (penting untuk pengunggahan file)
-                .readTimeout(60, TimeUnit.SECONDS)     // Timeout untuk membaca data dari koneksi
+                .connectTimeout(90, TimeUnit.SECONDS)  // Timeout untuk membangun koneksi awal
+                .writeTimeout(90, TimeUnit.SECONDS)    // Timeout untuk menulis data ke koneksi (penting untuk pengunggahan file)
+                .readTimeout(90, TimeUnit.SECONDS)     // Timeout untuk membaca data dari koneksi
                 .build();
 
         // Create multipart request body
