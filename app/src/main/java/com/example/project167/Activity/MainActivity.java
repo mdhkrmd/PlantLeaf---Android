@@ -64,8 +64,7 @@ public class MainActivity extends AppCompatActivity {
     private static final String KEY_NIK = "nik";
     TextView ambilNik, ambilNama, txtProfil;
     TextView txtRiwayat;
-
-    ImageView imageRiwayat;
+    ImageView imageRiwayat, infoBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,6 +84,7 @@ public class MainActivity extends AppCompatActivity {
         txtRiwayat = findViewById(R.id.textView104);
 
         imageRiwayat = findViewById(R.id.imageView64);
+        infoBtn = findViewById(R.id.infoBtn);
 
         swipeRefreshLayout = findViewById(R.id.swipeRefreshLayout);
 
@@ -152,6 +152,14 @@ public class MainActivity extends AppCompatActivity {
                     intentPindah.putExtra("nama", ambilNama.getText().toString());
                     startActivity(intentPindah);
                 }
+            }
+        });
+
+        infoBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentPindah = new Intent(MainActivity.this, panduan.class);
+                startActivity(intentPindah);
             }
         });
     }
@@ -265,8 +273,8 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(MainActivity.this, "Data Login terambil", Toast.LENGTH_SHORT).show();
                     } else {
                         Toast.makeText(MainActivity.this, "Login data is null or empty", Toast.LENGTH_SHORT).show();
-                        ambilNama.setText("Anonymous");
-                        ambilNik.setText("0000");
+                        ambilNama.setText("Hi!, User");
+                        ambilNik.setText("ID");
                         txtRiwayat.setEnabled(false);
                     }
                 } else {
