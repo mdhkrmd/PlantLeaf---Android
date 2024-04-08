@@ -5,6 +5,7 @@ import static com.example.project167.Activity.MainActivity.storeNik;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -147,6 +148,8 @@ public class activity_profil extends AppCompatActivity {
                         Toast.makeText(activity_profil.this, "Data Login terambil", Toast.LENGTH_SHORT).show();
                     } else {
                         Toast.makeText(activity_profil.this, "Login data is null or empty", Toast.LENGTH_SHORT).show();
+                        txtUpdate.setEnabled(false);
+                        txtUpdate.setTextColor(Color.parseColor("#9CAFAA"));
                     }
                 } else {
                     Toast.makeText(activity_profil.this, "Failed to get login data", Toast.LENGTH_SHORT).show();

@@ -146,6 +146,18 @@
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="20dp"/>
 
+            <TextView
+                android:id="@+id/txtAnon"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Masuk tanpa Akun"
+                android:fontFamily="@font/playfairdisplaybold"
+                android:textStyle="bold"
+                android:textSize="15dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="20dp"
+                android:textColor="#114232"/>
+
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

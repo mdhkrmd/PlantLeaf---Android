@@ -34,6 +34,7 @@ public class activity_login extends AppCompatActivity {
     private SharedPreferences loginPreferences;
     private SharedPreferences.Editor loginPrefsEditor;
     private Boolean saveLogin;
+    private TextView txtAnon;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +47,7 @@ public class activity_login extends AppCompatActivity {
         txtForgot = findViewById(R.id.txtLupa);
         txtDaftar = findViewById(R.id.tvDaftar);
         chkBox = findViewById(R.id.checkBoxIngat);
+        txtAnon = findViewById(R.id.txtAnon);
 
         // Mendapatkan preferensi login
         loginPreferences = getSharedPreferences("loginPrefs", MODE_PRIVATE);
@@ -74,6 +76,14 @@ public class activity_login extends AppCompatActivity {
                     postDataLogin(inputUsername.getText().toString(),
                             inputPassword.getText().toString());
                 }
+            }
+        });
+
+        txtAnon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(activity_login.this, MainActivity.class);
+                startActivity(intent);
             }
         });
 

@@ -12,6 +12,7 @@ import android.provider.MediaStore;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.Manifest;
@@ -64,6 +65,8 @@ public class MainActivity extends AppCompatActivity {
     TextView ambilNik, ambilNama, txtProfil;
     TextView txtRiwayat;
 
+    ImageView imageRiwayat;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,6 +83,8 @@ public class MainActivity extends AppCompatActivity {
         ambilNama = findViewById(R.id.textView2);
         txtProfil = findViewById(R.id.textView10);
         txtRiwayat = findViewById(R.id.textView104);
+
+        imageRiwayat = findViewById(R.id.imageView64);
 
         swipeRefreshLayout = findViewById(R.id.swipeRefreshLayout);
 
@@ -138,10 +143,15 @@ public class MainActivity extends AppCompatActivity {
         txtRiwayat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intentPindah = new Intent(MainActivity.this, activity_riwayat.class);
-                intentPindah.putExtra("nik", ambilNik.getText().toString());
-                intentPindah.putExtra("nama", ambilNama.getText().toString());
-                startActivity(intentPindah);
+                if (ambilNama.getText() == "Anonymous" && ambilNik.getText() == "0000"){
+                    Toast.makeText(MainActivity.this, "Login untuk mendapatkan akses Riwayat", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    Intent intentPindah = new Intent(MainActivity.this, activity_riwayat.class);
+                    intentPindah.putExtra("nik", ambilNik.getText().toString());
+                    intentPindah.putExtra("nama", ambilNama.getText().toString());
+                    startActivity(intentPindah);
+                }
             }
         });
     }
@@ -255,6 +265,9 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(MainActivity.this, "Data Login terambil", Toast.LENGTH_SHORT).show();
                     } else {
                         Toast.makeText(MainActivity.this, "Login data is null or empty", Toast.LENGTH_SHORT).show();
+                        ambilNama.setText("Anonymous");
+                        ambilNik.setText("0000");
+                        txtRiwayat.setEnabled(false);
                     }
                 } else {
                     Toast.makeText(MainActivity.this, "Failed to get login data", Toast.LENGTH_SHORT).show();
