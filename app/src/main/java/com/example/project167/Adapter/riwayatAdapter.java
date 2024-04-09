@@ -42,6 +42,7 @@ public class riwayatAdapter extends RecyclerView.Adapter<riwayatAdapter.riwayatV
         holder.txtId.setText(riwayatData.getIdRiwayat());
         holder.txtTanggal.setText(riwayatData.getTanggalRiwayat());
         holder.txtPenyakit.setText(riwayatData.getPenyakitRiwayat());
+        holder.txtCatatan.setText(riwayatData.getCatatanRiwayat());
     }
 
     @Override
@@ -50,7 +51,7 @@ public class riwayatAdapter extends RecyclerView.Adapter<riwayatAdapter.riwayatV
     }
 
     static class riwayatViewHolder extends RecyclerView.ViewHolder {
-        TextView txtTanggal, txtId, txtPenyakit;
+        TextView txtTanggal, txtId, txtPenyakit, txtCatatan;
         private ImageView pic;
 
         riwayatViewHolder(@NonNull View itemView) {
@@ -59,6 +60,7 @@ public class riwayatAdapter extends RecyclerView.Adapter<riwayatAdapter.riwayatV
             txtId = itemView.findViewById(R.id.txtId);
             txtPenyakit = itemView.findViewById(R.id.txtPenyakit);
             pic = itemView.findViewById(R.id.pic);
+            txtCatatan = itemView.findViewById(R.id.txtCatatan);
         }
     }
 }

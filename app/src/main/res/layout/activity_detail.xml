@@ -75,7 +75,15 @@
                     android:textColor="@color/black"
                     android:textSize="23sp"
                     android:textStyle="bold" />
-
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ID Prediksi"
+                    android:id="@+id/id_pred"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:layout_marginRight="15dp"/>
             </LinearLayout>
 
             <LinearLayout
@@ -202,6 +210,44 @@
                     android:layout_marginLeft="15dp"/>
             </LinearLayout>
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tambah Catatan"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="15dp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:fontFamily="@font/playfairdisplayregular"/>
+
+            <EditText
+                android:id="@+id/inputCatatan"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:background="@drawable/shape"
+                android:hint="Catatan"
+                android:textColor="#f7f7f7"
+                android:textColorHint="#f7f7f7"
+                android:paddingLeft="10dp"
+                android:textSize="15dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:enabled="false"/>
+
+            <Button
+                android:id="@+id/btnCatat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:backgroundTint="#114232"
+                android:fontFamily="@font/playfairdisplaybold"
+                android:text="Kirim"
+                android:textSize="18dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="100dp"
+                android:enabled="false"/>
+
 <!--            <androidx.appcompat.widget.AppCompatButton-->
 <!--                android:id="@+id/addToCardBtn"-->
 <!--               android:layout_marginStart="16dp"-->
@@ -217,4 +263,21 @@
 <!--                android:textSize="16sp"/>-->
         </LinearLayout>
     </ScrollView>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/noteBtn"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/add"
+            android:tint="@color/white"
+            android:layout_marginBottom="20pt"
+            android:layout_marginRight="10pt"
+            android:backgroundTint="@color/greenP">
+        </com.google.android.material.floatingactionbutton.FloatingActionButton>
+    </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

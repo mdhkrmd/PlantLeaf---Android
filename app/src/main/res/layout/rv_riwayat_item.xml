@@ -105,6 +105,26 @@
                     android:textStyle="bold"/>
             </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="15dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Catatan: "
+                    android:layout_marginLeft="15dp"/>
+                <TextView
+                    android:id="@+id/txtCatatan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Catatan"
+                    android:layout_marginLeft="5dp"
+                    android:textStyle="bold"/>
+            </LinearLayout>
+
 
         </LinearLayout>
 

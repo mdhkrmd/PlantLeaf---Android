@@ -79,7 +79,7 @@ public class activity_predict extends AppCompatActivity {
     private TextView title, txtNama, txtNIK;
     private TextView subtitle;
     private String modifiedSublabel;
-    private String label, sublabel, tentang,  gejala, penanganan, base64Image;
+    private String label, sublabel, tentang,  gejala, penanganan, base64Image, id_pred;
     private ActivityResultLauncher<Intent> imagePickerLauncher;
     private ActivityResultLauncher<String> selectImageLauncher;
     private String nik, nama;
@@ -329,6 +329,7 @@ public class activity_predict extends AppCompatActivity {
                         gejala = jsonObject.optString("gejala");
                         penanganan = jsonObject.optString("penanganan");
                         base64Image = jsonObject.optString("gambar");
+                        id_pred = jsonObject.optString("id_prediksi");
 
                         // Show toast notification
                         runOnUiThread(new Runnable() {
@@ -345,6 +346,7 @@ public class activity_predict extends AppCompatActivity {
                                 intent.putExtra("gejala", gejala);
                                 intent.putExtra("penanganan", penanganan);
                                 intent.putExtra("gambar", base64Image);
+                                intent.putExtra("id_pred", id_pred);
                                 startActivity(intent);
 
                                 // Calculate the time taken

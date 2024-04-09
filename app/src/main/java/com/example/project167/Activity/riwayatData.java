@@ -14,6 +14,8 @@ public class riwayatData {
     private String namaRiwayat;
     @SerializedName("gambar")
     private String gambarRiwayat;
+    @SerializedName("catatan")
+    private String catatan;
 
     public String getIdRiwayat() {
         return idRiwayat;
@@ -46,6 +48,9 @@ public class riwayatData {
 
     public String getPenyakitRiwayat() {
         return penyakitRiwayat;
+    }
+    public String getCatatanRiwayat() {
+        return catatan;
     }
 
     public void setPenyakitRiwayat(String penyakitRiwayat) {
