@@ -47,12 +47,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingBottom="50dp">
+            android:paddingBottom="140dp">
 
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="615dp">
+                android:layout_height="850dp">
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rvRiwayat"
