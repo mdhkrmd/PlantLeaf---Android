@@ -3,6 +3,7 @@ package com.example.project167.Activity;
 import static com.example.project167.Activity.MainActivity.setStatusBarColor;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -16,7 +17,7 @@ import com.bumptech.glide.Glide;
 import com.example.project167.R;
 
 public class activity_detailtanaman extends AppCompatActivity {
-    private ImageView itemPic;
+    private ImageView itemPic, backBtn;
     private TextView txtNama, txtTentang, txtMerawat;
 
 
@@ -29,6 +30,7 @@ public class activity_detailtanaman extends AppCompatActivity {
         txtNama = findViewById(R.id.txtNama);
         txtTentang = findViewById(R.id.txtTentang);
         txtMerawat = findViewById(R.id.txtMerawat);
+        backBtn = findViewById(R.id.backBtn);
 
         setStatusBarColor(activity_detailtanaman.this);
 
@@ -43,5 +45,12 @@ public class activity_detailtanaman extends AppCompatActivity {
         txtNama.setText(nama);
         txtTentang.setText(alamat);
         txtMerawat.setText(deskripsi);
+
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 }

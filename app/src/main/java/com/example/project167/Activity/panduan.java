@@ -1,5 +1,7 @@
 package com.example.project167.Activity;
 
+import static com.example.project167.Activity.MainActivity.setStatusBarColor;
+
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
@@ -29,6 +31,8 @@ public class panduan extends AppCompatActivity {
         txt1 = findViewById(R.id.txt1);
         txt2 = findViewById(R.id.txt2);
         txt3 = findViewById(R.id.txt3);
+
+        setStatusBarColor(panduan.this);
 
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
