@@ -29,7 +29,7 @@ import retrofit2.Response;
 
 public class activity_profil extends AppCompatActivity {
 
-    TextView ambilNama, txtUpdate, txtLogout, ambilNik, txtRiwayat;
+    TextView ambilNama, txtUpdate, txtLogout, ambilNik, txtRiwayat, txtLogin;
     TextView halamanUtama;
 //    private String nama;
     FloatingActionButton btnScan;
@@ -49,6 +49,7 @@ public class activity_profil extends AppCompatActivity {
         halamanUtama = findViewById(R.id.textView101);
         txtRiwayat = findViewById(R.id.textView104);
         btnScan = findViewById(R.id.btnScan);
+        txtLogin = findViewById(R.id.txtLogin);
         setStatusBarColor(activity_profil.this);
 
         String nik = getStoredNik3();
@@ -77,6 +78,17 @@ public class activity_profil extends AppCompatActivity {
         });
 
         txtLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                storeNik(activity_profil.this, "default_value");
+                activity_login.clearLoginPreferences(activity_profil.this);
+                Intent intentPindah = new Intent(activity_profil.this, activity_login.class);
+                startActivity(intentPindah);
+                finish();
+            }
+        });
+
+        txtLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 storeNik(activity_profil.this, "default_value");
@@ -146,13 +158,17 @@ public class activity_profil extends AppCompatActivity {
                         ambilNama.setText(nama);
 
                         Toast.makeText(activity_profil.this, "Data Login terambil", Toast.LENGTH_SHORT).show();
+                        txtLogin.setEnabled(false);
+                        txtLogin.setTextColor(Color.parseColor("#9CAFAA"));
                     } else {
                         Toast.makeText(activity_profil.this, "Login data is null or empty", Toast.LENGTH_SHORT).show();
                         ambilNama.setText("Hi!, User");
                         ambilNik.setText("ID");
                         txtRiwayat.setEnabled(false);
                         txtUpdate.setEnabled(false);
+                        txtLogout.setEnabled(false);
                         txtUpdate.setTextColor(Color.parseColor("#9CAFAA"));
+                        txtLogout.setTextColor(Color.parseColor("#9CAFAA"));
                     }
                 } else {
                     Toast.makeText(activity_profil.this, "Failed to get login data", Toast.LENGTH_SHORT).show();
