@@ -148,6 +148,9 @@ public class activity_profil extends AppCompatActivity {
                         Toast.makeText(activity_profil.this, "Data Login terambil", Toast.LENGTH_SHORT).show();
                     } else {
                         Toast.makeText(activity_profil.this, "Login data is null or empty", Toast.LENGTH_SHORT).show();
+                        ambilNama.setText("Hi!, User");
+                        ambilNik.setText("ID");
+                        txtRiwayat.setEnabled(false);
                         txtUpdate.setEnabled(false);
                         txtUpdate.setTextColor(Color.parseColor("#9CAFAA"));
                     }

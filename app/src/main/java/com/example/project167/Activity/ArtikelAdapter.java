@@ -49,11 +49,15 @@ public class ArtikelAdapter extends RecyclerView.Adapter<ArtikelAdapter.Viewhold
             @Override
             public void onClick(View v) {
                 String linkArtikel = artikelData.getLinkArtikel();
-                Uri webpage = Uri.parse(linkArtikel);
-                Intent i = new Intent(Intent.ACTION_VIEW, webpage);
+
+                // Create an Intent to start y.java activity
+                Intent i = new Intent(context, artikel_wv.class);
+                i.putExtra("EXTRA_URL", linkArtikel); // Replace y_java_class_name with the actual class name of y.java
+
                 context.startActivity(i);
             }
         });
+
     }
 
     @Override
