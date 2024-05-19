@@ -3,6 +3,7 @@ package com.example.project167.Activity;
 import static com.example.project167.Activity.MainActivity.setStatusBarColor;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -19,7 +20,7 @@ import com.example.project167.R;
 public class panduan extends AppCompatActivity {
 
     ImageView backBtn, fotoPanduan;
-    TextView txt1, txt2, txt3;
+    TextView txt1, txt2, txt3, txtListPenyakit;
     @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +32,8 @@ public class panduan extends AppCompatActivity {
         txt1 = findViewById(R.id.txt1);
         txt2 = findViewById(R.id.txt2);
         txt3 = findViewById(R.id.txt3);
+        txtListPenyakit = findViewById(R.id.txtListPenyakit);
+
 
         setStatusBarColor(panduan.this);
 
@@ -38,6 +41,14 @@ public class panduan extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 finish();
+            }
+        });
+
+        txtListPenyakit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentPindah = new Intent(panduan.this, activity_penyakit.class);
+                startActivity(intentPindah);
             }
         });
 

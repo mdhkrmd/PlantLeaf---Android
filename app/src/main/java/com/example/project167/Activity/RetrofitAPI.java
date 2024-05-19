@@ -62,6 +62,9 @@ public interface RetrofitAPI {
 //            @Query("id") int id
 //    );
 //
+    @GET("penyakit")
+    Call<List<penyakitData>> getPenyakit();
+
     @GET("riwayat")
     Call<List<riwayatData>> getRiwayat(
             @Query("nik") String nik
